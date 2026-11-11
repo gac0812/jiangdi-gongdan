@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>降低工单总量 · 降低转人工率</title>
-  <style>
+<title>降低工单总量 · 降低转人工率 · 上线成效</title>
+<style>
 :root{
   --bg:#e8eaee;--stage:#ffffff;--panel:#f5f6f8;--panel2:#eef0f3;
   --line:rgba(17,19,24,.08);--line2:rgba(17,19,24,.16);
@@ -20,7 +20,7 @@ body{font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHe
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .slide.on .a{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
 
-.k{font-size:22px;letter-spacing:.18em;color:var(--mute)}
+.k{font-size:24px;letter-spacing:.18em;color:var(--mute)}
 h1{margin:28px 0 0;font-size:124px;line-height:1.04;font-weight:600;letter-spacing:-.04em}
 h2{margin:18px 0 0;font-size:66px;line-height:1.1;font-weight:600;letter-spacing:-.035em}
 .grow{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
@@ -34,8 +34,8 @@ h2{margin:18px 0 0;font-size:66px;line-height:1.1;font-weight:600;letter-spacing
 .range-sub .sm{margin-top:6px}
 .num{font-size:128px;font-weight:600;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
 .lab{margin-top:18px;font-size:28px;color:var(--mute)}
-.sm{margin-top:8px;font-size:22px;color:var(--dim);font-variant-numeric:tabular-nums}
-.fn{position:absolute;left:140px;bottom:96px;font-size:20px;color:var(--dim);letter-spacing:.02em}
+.sm{margin-top:8px;font-size:24px;color:var(--dim);font-variant-numeric:tabular-nums}
+.fn{position:absolute;left:140px;bottom:92px;font-size:24px;color:var(--dim);letter-spacing:.02em}
 .side{position:absolute;right:140px;top:96px;text-align:right}
 .side .num{font-size:96px}
 .c-amber{color:var(--amber)}.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}.c-mute{color:var(--mute)}
@@ -50,10 +50,10 @@ svg.chart{width:100%;height:100%;display:block}
 .cover{flex:1;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:80px}
 .cover .sub{margin-top:40px;font-size:34px;color:var(--mute)}
 .cover .sub b{color:var(--text);font-weight:500}
-.cover .meta{margin-top:20px;font-size:22px;color:var(--dim);letter-spacing:.06em}
+.cover .meta{margin-top:20px;font-size:24px;color:var(--dim);letter-spacing:.06em}
 .toc{display:flex;flex-direction:column;gap:36px}
 .toc-i{display:flex;align-items:baseline;gap:24px}
-.toc-n{flex:none;font-size:22px;letter-spacing:.22em;color:var(--amber)}
+.toc-n{flex:none;font-size:24px;letter-spacing:.22em;color:var(--amber)}
 .toc-t{font-size:40px;font-weight:600;letter-spacing:-.02em}
 
 /* divider */
@@ -102,18 +102,18 @@ svg.chart{width:100%;height:100%;display:block}
 /* sankey */
 .sank{height:620px}
 
-/* stack 126 */
-.stack{display:flex;height:150px;gap:6px}
+/* stack */
+.stack{display:flex;height:180px;gap:6px}
 .seg{display:flex;align-items:center;justify-content:center;border-radius:16px;font-size:44px;font-weight:600;color:#0d1117;font-variant-numeric:tabular-nums}
 .seg.red{background:var(--red)}.seg.amber{background:var(--amber)}.seg.green{background:var(--green)}.seg.grey{background:#9aa3b2;color:#fff}
 .stack-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
 .sl-item{display:flex;gap:16px;align-items:flex-start}
 .sl-item .sw{margin-top:12px}
 .sl-n{font-size:44px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
-.sl-n span{font-size:22px;color:var(--mute);margin-left:10px;font-weight:400}
-.sl-l{font-size:22px;color:var(--mute);margin-top:10px}
+.sl-n span{font-size:24px;color:var(--mute);margin-left:10px;font-weight:400}
+.sl-l{font-size:26px;color:var(--mute);margin-top:10px}
 .other13{display:flex;gap:14px;margin-top:48px;flex-wrap:wrap;align-items:center}
-.chip{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;border:1px solid var(--line);color:var(--mute);font-size:22px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;border:1px solid var(--line);color:var(--mute);font-size:24px}
 .chip .sw{width:14px;height:14px;border-radius:4px}
 .chip b{color:var(--text);margin-left:8px;font-weight:600}
 .chip-lead{font-size:22px;color:var(--dim);margin-right:8px;letter-spacing:.1em}
@@ -123,7 +123,7 @@ svg.chart{width:100%;height:100%;display:block}
 .fbox{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:40px 46px;font-size:40px;font-weight:600;text-align:center;min-width:250px}
 .fbox.acc{border-color:var(--amber);color:var(--amber)}
 .fbox.acc.blue{border-color:var(--blue);color:var(--blue)}
-.fsub{margin-top:12px;font-size:22px;color:var(--mute);font-weight:400;letter-spacing:.04em}
+.fsub{margin-top:12px;font-size:24px;color:var(--mute);font-weight:400;letter-spacing:.04em}
 .farrow{font-size:44px;color:var(--dim)}
 .fbranch{display:flex;flex-direction:column;gap:20px;flex:1}
 .fout{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:30px 36px;border-radius:18px;font-size:34px;font-weight:500;border:1px solid var(--line);background:var(--panel)}
@@ -133,7 +133,7 @@ svg.chart{width:100%;height:100%;display:block}
 .ftools{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1}
 .ftools span{padding:28px 34px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);font-size:30px;font-weight:500;text-align:center}
 .nots{display:flex;gap:16px;margin-top:44px;align-items:center}
-.not-k{font-size:22px;color:var(--red);letter-spacing:.14em;margin-right:8px}
+.not-k{font-size:24px;color:var(--red);letter-spacing:.14em;margin-right:8px}
 .not{padding:14px 22px;border-radius:999px;border:1px solid var(--line2);color:var(--mute);font-size:24px;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
 
 /* effect bars */
@@ -180,243 +180,247 @@ svg.chart{width:100%;height:100%;display:block}
 .chrome{position:absolute;left:140px;right:140px;bottom:40px;display:flex;align-items:center;gap:24px}
 .chrome .prog{flex:1;height:3px;background:rgba(17,19,24,.08);border-radius:2px;overflow:hidden}
 .chrome .prog i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s}
-.chrome #pg{flex:none;font-size:18px;letter-spacing:.08em;color:var(--dim);font-variant-numeric:tabular-nums}
-  </style>
+.chrome #pg{flex:none;font-size:20px;letter-spacing:.08em;color:var(--dim);font-variant-numeric:tabular-nums}
+  
+/* v3 */
+.cv-sub{margin-top:44px;font-size:40px;color:var(--mute)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr)}
+.st{padding:8px 0 8px 48px;border-left:2px solid var(--line)}
+.st:first-child{padding-left:0;border-left:0}
+.st .num{font-size:140px}
+.st-k{margin-top:24px;font-size:34px;color:var(--text)}
+.st-k span{display:block;margin-left:0;margin-top:8px;font-size:28px;color:var(--mute)}
+.ai-note{display:grid;grid-template-columns:1fr;margin-top:56px;width:50%;font-size:30px;color:var(--mute)}
+.ai-note .ln{height:3px;background:var(--line2);margin-bottom:22px;width:calc(100% - 48px)}
+.ai-note b{color:var(--text);font-size:38px;font-weight:600;margin:0 6px}
+.plain{width:100%;border-collapse:collapse;margin-top:48px}
+.plain td,.plain th{padding:24px 0;border-top:1px solid var(--line);font-size:30px;text-align:left;vertical-align:middle}
+.plain th{font-size:26px;color:var(--mute);font-weight:400;border-top:0;padding-top:0}
+.plain td{color:var(--mute)}
+.plain td.n{color:var(--text);font-weight:600;width:420px}
+.plain td.n .sw{display:inline-block;margin-right:16px}
+.plain td.v{color:var(--text);text-align:right;font-size:40px;font-weight:600;font-variant-numeric:tabular-nums}
+.plain tr.tot td{border-top:2px solid var(--line2)}
+.plain tr.tot td.v{color:var(--text)}
+.plain.rules{margin-top:40px}
+.plain.rules td{font-size:36px;padding:34px 0}
+.plain.rules td.n{width:760px}
+.plain.rules td:not(.n){color:var(--text)}
+.lead{margin:0;font-size:32px;color:var(--mute);line-height:1.5}
+.why{margin:0;padding-left:56px;max-width:1500px;font-size:42px;line-height:1.5;font-weight:500}
+.why li{padding:18px 0 18px 12px}
+.why li::marker{color:var(--blue);font-weight:600}
+.cfg{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1300px}
+.cfg-h{font-size:28px;color:var(--mute);padding-bottom:20px;border-bottom:2px solid var(--line2)}
+.cfg-v{margin-top:24px;font-size:46px;font-weight:600;line-height:1.6}
+.stack.thin{height:72px}
+.plain.gap td{vertical-align:top;line-height:1.5}
+.plain.gap td.n{width:200px}
+.cfg.plan{max-width:none;gap:96px}
+.cfg-p{margin-top:24px;font-size:34px;line-height:1.55;color:var(--text)}
+.close-why{margin-top:32px;max-width:1400px;font-size:32px;color:var(--mute);line-height:1.55}
+.cmp{display:flex;align-items:baseline;gap:28px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line);max-width:1400px}
+.cmp-k{font-size:30px;color:var(--mute);margin-right:12px}
+.cmp-old{font-size:44px;font-weight:600;color:var(--mute)}
+.cmp-ar{font-size:40px;color:var(--dim)}
+.cmp-new{font-size:44px;font-weight:600;color:var(--green)}
+/* v2 additions */
+.hl3 .num{font-size:150px;letter-spacing:-.045em}
+.hl3 .card{padding:56px 52px;display:flex;flex-direction:column;justify-content:flex-start;min-height:400px}
+.hl3 .lab{font-size:32px;color:var(--text);font-weight:500;margin-top:28px}
+.hl3 .sm{font-size:26px;margin-top:14px}
+.cover h1 .c-amber{display:inline-block;margin-top:8px}
+.tag{display:inline-block;margin-left:14px;padding:4px 14px;border-radius:999px;font-size:24px;font-weight:600;vertical-align:middle;letter-spacing:.06em}
+.tag.blue{color:var(--blue);border:1.5px solid var(--blue)}
+.base{display:inline-block;padding:6px 16px;border-radius:8px;background:var(--panel2);color:var(--mute);font-size:24px;letter-spacing:.04em;margin-left:16px;vertical-align:middle}
+.fout .ft{display:flex;flex-direction:column;gap:6px}
+.fout .fsub{margin-top:0;text-align:left}
+.flow429 .fout{padding:22px 36px}
+.fout.blu{border-left:6px solid var(--blue)}
+.flow429{display:grid;grid-template-columns:auto auto auto auto 1fr;align-items:center;gap:28px}
+/* chain */
+.chain-wrap{display:grid;grid-template-columns:1fr 520px;gap:64px;align-items:center}
+.chain{display:flex;flex-direction:column;gap:14px}
+.ch{display:grid;grid-template-columns:72px 1fr;gap:28px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 36px}
+.ch .no{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600;background:#fff;border:1.5px solid var(--line2);color:var(--mute)}
+.ch .t{font-size:36px;font-weight:600;letter-spacing:-.02em}
+.ch .d{font-size:26px;color:var(--mute);margin-top:6px}
+.ch.res{background:rgba(43,125,233,.06);border-color:var(--blue)}
+.ch.res .no{background:var(--blue);border-color:var(--blue);color:#fff}
+.ch.res .t{color:var(--blue)}
+.bigside .num{font-size:220px}
+.bigside .lab{font-size:34px;color:var(--text);font-weight:600}
+.bigside .sm{font-size:26px}
+/* stack 221 */
+.brace{display:flex;gap:6px;margin-bottom:18px}
+.brace>div{border-top:3px solid;padding-top:14px;font-size:28px;font-weight:600;font-variant-numeric:tabular-nums}
+.stack-legend.l3{grid-template-columns:27.6fr 66.1fr 30fr;gap:40px}
+.sl-d{font-size:24px;color:var(--dim);margin-top:8px;line-height:1.4}
+/* closure */
+.close-wrap{display:grid;grid-template-columns:1fr 560px;gap:80px;align-items:center}
+.cgrid{display:grid;grid-template-columns:repeat(14,1fr);gap:14px;max-width:1040px}
+.cgrid .cell{border-radius:10px}
+.cgrid .cell.green{background:var(--green)}
+.close-legend{display:flex;gap:48px;margin-top:40px}
+.close-legend .lg{display:flex;align-items:center;gap:18px;font-size:28px;color:var(--mute)}
+.close-legend b{font-size:44px;color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+/* summary */
+.sum{width:100%;border-collapse:collapse;margin-top:24px}
+.sum th{font-size:24px;color:var(--mute);font-weight:400;text-align:left;letter-spacing:.14em;padding:0 0 18px}
+.sum td{font-size:30px;padding:24px 0;border-top:1px solid var(--line);vertical-align:middle}
+.sum td.w{font-weight:600;width:460px}
+.sum td.h{color:var(--mute);width:620px}
+.sum td.r{text-align:right;font-size:44px;color:var(--text);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sum td.r small{font-size:24px;color:var(--mute);font-weight:400;margin-left:10px}
+.sum tr.tot td{border-top:2px solid var(--line2)}
+.levers .k{align-self:center;margin-right:8px}
+.levers{margin-top:44px}
+.lever.mute{color:var(--mute);border-color:var(--line2)}
+</style>
 </head>
 <body>
-    <div class="stage" id="stage">
+<div class="stage" id="stage">
 
-<!-- 01 首页 -->
+<!-- 01 cover -->
 <section class="slide" data-sec="">
-  <div class="cover">
-    <div>
-      <div class="k a">2026.08.14 – 09.15 · MARS 1774</div>
-      <h1 class="a">降低工单总量<br>降低转人工率</h1>
-    </div>
-    <div class="toc a">
-      <div class="toc-i"><span class="toc-n">01</span><span class="toc-t">降低工单总量</span></div>
-      <div class="toc-i"><span class="toc-n">02</span><span class="toc-t">如何实现</span></div>
-      <div class="toc-i"><span class="toc-n">03</span><span class="toc-t">预期效果</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 04 waffle -->
-      <section class="slide" data-sec="为什么">
-  <div class="k a">降低工单总量 · 01</div>
-  <h2 class="a">AI 相关问题工单集中出现的两类问题</h2>
-  <div class="two grow">
-    <div class="waffle a" id="waffle"></div>
-    <div class="legend a">
-      <div class="lg"><i class="sw amber"></i><div><div class="lg-n c-amber">126</div><div class="lg-l">429 / 限流 · 7.1%</div></div></div>
-      <div class="lg"><i class="sw blue"></i><div><div class="lg-n c-blue">61</div><div class="lg-l">配置 · 3.4%</div></div></div>
-      <div class="lg"><i class="sw grey"></i><div><div class="lg-n c-mute">1587</div><div class="lg-l">其他 · 89.5%</div></div></div>
-          </div>
-        </div>
-      </section>
-
-<!-- 05 trend -->
-      <section class="slide" data-sec="为什么">
-  <div class="k a">降低工单总量 · 02</div>
-  <h2 class="a">随着业务推广呈现上升趋势</h2>
-        <div class="grow">
-    <div class="two-64">
-      <svg id="thirds" class="chart a"></svg>
-      <svg id="daily" class="chart a"></svg>
-          </div>
-        </div>
-  <div class="fn a">上旬 8/14–24 · 中旬 8/25–9/4 · 下旬 9/5–15</div>
-      </section>
-
-<!-- 06 split -->
-      <section class="slide" data-sec="为什么">
-  <div class="k a">降低工单总量 · 03</div>
-  <h2 class="a">这类问题不进 TS</h2>
-  <div class="grid3 grow">
-    <div class="card a"><div class="num c-green">≤ 100万</div><div class="lab">AI 直接做</div><div class="sm">TPM</div></div>
-    <div class="card a"><div class="num c-amber">＞ 100万</div><div class="lab">只有商务</div><div class="sm">TPM</div></div>
-    <div class="card a"><div class="num c-red">TS</div><div class="lab">不进</div><div class="sm">工单</div></div>
-        </div>
-      </section>
-
-<!-- 07 config tickets -->
-      <section class="slide" data-sec="为什么">
-  <div class="k a">降低工单总量 · 04</div>
-  <h2 class="a">配置工单</h2>
-  <div class="grid3 grow">
-    <div class="card a"><div class="stmt">耗时长</div><div class="lab">人工</div></div>
-    <div class="card a"><div class="stmt">每单必查配置</div><div class="lab">所有 AI 工单</div></div>
-    <div class="card a"><div class="stmt">上手难</div><div class="lab">新手不会配</div></div>
-        </div>
-      </section>
-
-<!-- 08 sankey -->
-<section class="slide" data-sec="为什么">
-  <div class="k a">降低转人工率</div>
-  <h2 class="a">自助提额只成了一半</h2>
-  <div class="grow"><div class="sank"><svg id="sankey" class="chart a"></svg></div></div>
-  <div class="fn a">前置会话 · 8/14–9/15 · 池子 330</div>
-</section>
-
-<!-- 08b 100 destinations -->
-<section class="slide" data-sec="为什么">
-  <div class="k a">降低转人工率</div>
-  <h2 class="a">可能去向</h2>
-  <div class="side a"><div class="num c-amber">100</div><div class="lab">没提额 · 未建单</div></div>
-  <div class="grid3 grow">
-    <div class="card a"><div class="stmt">继续忍受</div></div>
-    <div class="card a"><div class="stmt">用户流失</div></div>
-    <div class="card a"><div class="stmt">下次直提工单</div><div class="lab">不再相信 AI</div></div>
-        </div>
-      </section>
-
-<!-- 10 divider -->
-<section class="slide divider" data-sec="如何实现">
-  <div class="div-num a">02</div>
-  <div class="div-title a">如何实现</div>
-</section>
-
-<!-- 11 429 flow -->
-<section class="slide" data-sec="如何实现">
-  <div class="k a">如何实现 · 01</div>
-  <h2 class="a">429：识别再优化</h2>
   <div class="grow">
-    <div class="chips a" style="margin-top:0;margin-bottom:56px;flex-wrap:wrap">
-      <span class="chip">429</span><span class="chip">限流</span><span class="chip">RPM</span><span class="chip">TPM</span><span class="chip">TPD</span><span class="chip">提额</span><span class="chip">限额</span><span class="chip">限速</span>
-    </div>
-    <div class="flow a">
-      <div class="fbox">各种问题</div>
-      <div class="farrow">→</div>
-      <div class="fbox acc">识别</div>
-      <div class="farrow">→</div>
-      <div class="fbox acc">优化</div>
-    </div>
-    <div class="nots a"><span class="not-k">不再</span><span class="not">先要 request_id</span><span class="not">只劝降频 · 等窗口</span><span class="not">转 TS</span></div>
+    <div class="k a">2026.11.03 – 11.11</div>
+    <h1 class="a">降低工单总量<br>降低转人工率</h1>
+    <div class="cv-sub a">上线后数据汇报</div>
   </div>
 </section>
 
-<!-- 12 config flow -->
-<section class="slide" data-sec="如何实现">
-  <div class="k a">如何实现 · 02</div>
-  <h2 class="a">配置：只填一个 Key</h2>
+<!-- 02 overview -->
+<section class="slide" data-sec="数据">
+  <h2 class="a">11.03 – 11.11 上线数据</h2>
   <div class="grow">
-    <div class="flow a">
-      <div class="fbox">API Key</div>
-      <div class="farrow">→</div>
-      <div class="fbox acc blue">一键写入<div class="fsub">Base URL · 模型 ID · 鉴权头</div></div>
-      <div class="farrow">→</div>
-      <div class="ftools"><span>Codex</span><span>Claude Code</span><span>Workbuddy</span><span>Trae</span></div>
+    <div class="stats a">
+      <div class="st"><div class="num c-green">61</div><div class="st-k">自动提额</div></div>
+      <div class="st"><div class="num c-blue">146</div><div class="st-k">固定回答</div></div>
+      <div class="st"><div class="num c-amber">14</div><div class="st-k">转商务</div></div>
+      <div class="st"><div class="num c-green">57.1%</div><div class="st-k">独立闭环率<span>相关工单 24 / 42</span><span>原来不到 10%</span></div></div>
     </div>
-  </div>
-  <div class="fn a">维护成本低 · 工具清单可扩</div>
-</section>
-
-<!-- 13 divider -->
-<section class="slide divider" data-sec="预期效果">
-  <div class="div-num a">03</div>
-  <div class="div-title a">预期效果</div>
-</section>
-
-<!-- 14 tickets -->
-<section class="slide" data-sec="预期效果">
-  <div class="k a">预期效果 · 01</div>
-  <h2 class="a">降低工单总量</h2>
-  <div class="grow range a">
-    <div class="range-row">
-      <div class="num c-green">10.5%</div>
-      <div class="range-bar"></div>
-      <div class="num c-green">16.2%</div>
-    </div>
-    <div class="range-sub">
-      <div>126 + 61<div class="sm">187 / 1774</div></div>
-      <div style="text-align:right">126 + 61 + 100<div class="sm">287 / 1774</div></div>
-    </div>
+    <div class="ai-note a"><div class="ln"></div><div>自动提额 + 固定回答共 <b>207</b>，由 AI 直接处理，没有转人工</div></div>
   </div>
 </section>
 
-<!-- 15 handoff -->
-<section class="slide" data-sec="预期效果">
-  <div class="k a">预期效果 · 02</div>
-  <h2 class="a">现在 → 预期</h2>
+<!-- 03 split -->
+<section class="slide" data-sec="数据">
+  <h2 class="a">429 问题的三种处理结果</h2>
   <div class="grow">
-    <div class="pair a">
-      <div><div class="lab">失败率</div><div class="num"><span class="c-red">50%</span><span class="arrow">→</span><span class="c-green">5%</span></div></div>
-      <div><div class="lab">转人工率</div><div class="num"><span class="c-red">29%</span><span class="arrow">→</span><span class="c-blue">9%</span></div></div>
+    <div class="stack thin a">
+      <div class="seg green" style="width:27.6%"></div>
+      <div class="seg blue" style="width:66.1%;background:var(--blue)"></div>
+      <div class="seg amber" style="width:6.3%"></div>
     </div>
-    <div class="srow plain a"><div class="sl">现在</div><div class="sbar"><span class="green" style="width:49.7%">164</span><span class="red" style="width:20%">66</span><span class="amber" style="width:30.3%">100</span></div></div>
-    <div class="sarrow a">↓</div>
-    <div class="srow plain a"><div class="sl">预期</div><div class="sbar"><span class="green" style="width:91.4%">330</span><span class="blue" style="width:8.6%">31</span></div></div>
-    <div class="chips a"><span class="chip"><i class="sw green"></i>成功</span><span class="chip"><i class="sw red"></i>没提额 → 工单</span><span class="chip"><i class="sw amber"></i>没提额 · 未建单</span><span class="chip"><i class="sw blue"></i>告知找商务 31</span></div>
+    <table class="plain a">
+      <tr><td class="n"><i class="sw green"></i>自动提额</td><td>模糊 429，在 AI 可提范围内，直接提额</td><td class="v c-green">61</td></tr>
+      <tr><td class="n"><i class="sw blue"></i>固定回答</td><td>免费模型的 429，提额无效，直接说明原因</td><td class="v c-blue">146</td></tr>
+      <tr><td class="n"><i class="sw amber"></i>转商务</td><td>超出 AI 可提范围，生成提额商务任务</td><td class="v c-amber">14</td></tr>
+      <tr class="tot"><td class="n">合计</td><td></td><td class="v">221</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 04 closure -->
+<section class="slide" data-sec="数据">
+  <h2 class="a">42 例相关工单中独立闭环 24 例</h2>
+  <div class="grow">
+    <div class="cgrid a" id="cgrid"></div>
+    <div class="close-legend a">
+      <div class="lg"><i class="sw green"></i>独立闭环 <b>24</b></div>
+      <div class="lg"><i class="sw" style="background:var(--grey)"></i>其余 <b>18</b></div>
+    </div>
+    <div class="cmp a"><span class="cmp-k">独立闭环率</span><span class="cmp-old">原来不到 10%</span><span class="cmp-ar">→</span><span class="cmp-new">现在 57.1%</span></div>
+    <p class="close-why a">其余 18 例还没独立闭环，是因为用户问题、任务比较复杂。比如用户一次问了多个问题，或者连续问了几个问题，还是需要人来回答。</p>
+  </div>
+</section>
+
+<!-- 05 429 logic -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">429 的处理逻辑</h2>
+  <div class="grow">
+    <p class="lead a">用户提到 429、限流、RPM / TPM、提额等，先识别为 429 问题，再按情况处理：</p>
+    <table class="plain rules a">
+      <tr><th>情况</th><th>处理</th></tr>
+      <tr><td class="n">模糊 429，在 AI 可提范围内</td><td>自动提额</td></tr>
+      <tr><td class="n">免费模型的 429</td><td>固定回答，说明原因</td></tr>
+      <tr><td class="n">超出 AI 可提范围</td><td>转商务，生成提额商务任务</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 06 free model -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">免费模型为什么用固定回答</h2>
+  <div class="grow">
+    <ol class="why a">
+      <li>免费模型报的也是 429，但它的限流是独立的。</li>
+      <li>提升 RPM / TPM 对它没有效果，商务那边也没办法提升。</li>
+      <li>所以由 AI 直接给固定回答说明情况，不再转人工，降低转人工率。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 07 config -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">配置工具：重构 qiniu-coding-helper</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div><div class="cfg-h">为什么改这个</div><div class="cfg-p">qiniu-coding-helper 是已有的内部工具。重构它，就不用再依赖其他软件。</div></div>
+      <div><div class="cfg-h">原来的问题</div><div class="cfg-p">原来的配置流程比较乱，不是按合理的步骤来配。</div><div class="cfg-p">没有模型选择，默认模型是写死的。有用户用它配 Codex，写进去的默认模型是 gpt-6-astra。原来没有选模型的入口，就是直接写这个默认值。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 gaps -->
+<section class="slide" data-sec="不足">
+  <h2 class="a">现有不足</h2>
+  <div class="grow">
+    <table class="plain rules gap a">
+      <tr><td class="n">现状</td><td>默认只查最近 1 天的日志。</td></tr>
+      <tr><td class="n">原因</td><td>为了缩短查询时间。正常情况下，用户遇到问题会当时就问，或者先不管、下次遇到再问，1 天的范围能覆盖大部分情况。</td></tr>
+      <tr><td class="n">影响</td><td>用户隔了一天以上再来问，仍然需要用户提供 request id。</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 09 next -->
+<section class="slide" data-sec="后续">
+  <h2 class="a">后续计划：固定回答改为可配置</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div><div class="cfg-h">做法</div><div class="cfg-p">从免费模型 429 的固定回答出发，把固定回答做成可配置项，直接在 Mars 里配置。</div><div class="cfg-p">之后遇到同类问题，加一条配置就能处理，不需要改代码。</div></div>
+      <div><div class="cfg-h">例子：403 工单</div><div class="cfg-p">最近 403 相关的工单又多了起来：账号因恶意刷流量包被封，用户提工单申诉。</div><div class="cfg-p">刚开始几天每天十几个，最近几天也是每天都有。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 summary -->
+<section class="slide" data-sec="小结">
+  <h2 class="a">小结</h2>
+  <div class="grow">
+    <table class="sum a">
+      <tr><th>项目</th><th>说明</th><th style="text-align:right">11.03 – 11.11</th></tr>
+      <tr><td class="w">自动提额</td><td class="h">模糊 429，AI 直接提额</td><td class="r">61</td></tr>
+      <tr><td class="w">固定回答</td><td class="h">免费模型 429，AI 说明原因</td><td class="r">146</td></tr>
+      <tr><td class="w">AI 直接处理合计</td><td class="h">自动提额 + 固定回答</td><td class="r">207</td></tr>
+      <tr><td class="w">转商务</td><td class="h">超出 AI 可提范围</td><td class="r">14</td></tr>
+      <tr><td class="w">独立闭环率</td><td class="h">相关工单 24 / 42，原来不到 10%</td><td class="r">57.1%</td></tr>
+    </table>
   </div>
 </section>
 
 <div class="chrome"><div class="prog"><i id="bar"></i></div><span id="pg"></span></div>
 </div>
 
-  <script>
-const D={all:1774,cfg:61,r429:126,uni:187,pool:330,ok:164,miss:66,leave:100,
-  in126:[{l:'该提没提',v:64,c:'red'},{l:'到顶 → 商务',v:31,c:'amber'},{l:'已提额仍建单',v:18,c:'green'},{l:'直提 · 问限额 · 其他',v:13,c:'grey'}],
-  other13:[['工单界面直提',4],['会话只说转人工',2],['只问限额',4],['非提额场景',2],['漏算',1]],
-  daily:[3,2,2,7,5,4,1,4,1,1,1,0,0,4,4,9,5,8,8,4,2,3,3,1,6,2,2,5,6,7,2,5,9],
-  thirds429:[31,47,48],thirdsCfg:[16,20,25]};
+<script>
+const D={// 2026-11-03 至 2026-11-11 合计
+  raised:61,freeFixed:146,biz:14,closed:24,closedOf:42};
 const C={amber:'#d4890a',blue:'#2b7de9',green:'#1a9f5c',red:'#e24d48',grey:'#9aa3b2',mute:'#5c6573',dim:'#8b95a5',text:'#111318',axis:'rgba(17,19,24,.12)',track:'rgba(17,19,24,.06)'};
-const pct=(n,d,f=1)=>(n/d*100).toFixed(f)+'%';
 const $=s=>document.querySelector(s);
 
-function waffle(){
-  const N=200,a=Math.round(D.r429/D.all*N),b=Math.round(D.cfg/D.all*N);let h='';
-  for(let i=0;i<N;i++)h+=`<i class="cell ${i<a?'amber':i<a+b?'blue':''}"></i>`;
-  $('#waffle').innerHTML=h;
-}
-
-function thirds(){
-  const s=$('#thirds'),W=720,H=560;s.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  const base=H-80,chH=380,max=52,gw=W/3,bw=76,gap=20;let o='';
-  o+=`<line x1="0" y1="${base}" x2="${W}" y2="${base}" stroke="${C.axis}"/>`;
-  ['上旬','中旬','下旬'].forEach((g,i)=>{
-    const cx=gw*i+gw/2,a=D.thirds429[i],b=D.thirdsCfg[i],ha=a/max*chH,hb=b/max*chH;
-    o+=`<rect x="${cx-bw-gap/2}" y="${base-ha}" width="${bw}" height="${ha}" rx="8" fill="${C.amber}"/>`;
-    o+=`<text x="${cx-gap/2-bw/2}" y="${base-ha-16}" text-anchor="middle" font-size="36" font-weight="600" fill="${C.amber}">${a}</text>`;
-    o+=`<rect x="${cx+gap/2}" y="${base-hb}" width="${bw}" height="${hb}" rx="8" fill="${C.blue}"/>`;
-    o+=`<text x="${cx+gap/2+bw/2}" y="${base-hb-16}" text-anchor="middle" font-size="36" font-weight="600" fill="${C.blue}">${b}</text>`;
-    o+=`<text x="${cx}" y="${base+50}" text-anchor="middle" font-size="26" fill="${C.mute}">${g}</text>`;});
-  o+=`<text x="0" y="30" font-size="22" fill="${C.mute}" letter-spacing="3">上中下旬 · 各 11 天</text>`;
-  o+=`<g font-size="22" fill="${C.mute}"><rect x="${W-236}" y="14" width="18" height="18" rx="4" fill="${C.amber}"/><text x="${W-208}" y="31">429</text><rect x="${W-130}" y="14" width="18" height="18" rx="4" fill="${C.blue}"/><text x="${W-102}" y="31">配置</text></g>`;
-  s.innerHTML=o;
-}
-
-function daily(){
-  const s=$('#daily'),W=1080,H=560;s.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  const n=D.daily.length,pad=10,step=(W-2*pad)/n,bw=step*.66,base=H-80,chH=380,max=9.5;let o='';
-  o+=`<line x1="0" y1="${base}" x2="${W}" y2="${base}" stroke="${C.axis}"/>`;
-  D.daily.forEach((v,i)=>{
-    const x=pad+i*step+(step-bw)/2,h=v/max*chH;
-    o+=`<rect x="${x}" y="${base-h}" width="${bw}" height="${h}" rx="5" fill="${C.amber}" opacity="${v>=8?1:.5}"/>`;
-    if(v>=8)o+=`<text x="${x+bw/2}" y="${base-h-14}" text-anchor="middle" font-size="24" font-weight="600" fill="${C.amber}">${v}</text>`;});
-  [[0,'8/14'],[10,'8/24'],[21,'9/4'],[32,'9/15']].forEach(([i,l])=>{
-    o+=`<text x="${pad+i*step+step/2}" y="${base+46}" text-anchor="middle" font-size="24" fill="${C.mute}">${l}</text>`;});
-  o+=`<text x="0" y="30" font-size="22" fill="${C.mute}" letter-spacing="3">429 · 按日 · 单日 ≥ 8 标出</text>`;
-  s.innerHTML=o;
-}
-
-function sankey(){
-  const s=$('#sankey'),W=1560,H=620;s.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  const items=[{v:D.ok,c:C.green,l:'提额成功 · 未建单'},{v:D.miss,c:C.red,l:'没提额 → 工单'},{v:D.leave,c:C.amber,l:'没提额 · 未建单'}];
-  const x0=300,x1=344,x2=1010,x3=1054,top=30,bottom=H-30,gap=30,avail=(bottom-top)-gap*(items.length-1),xm=(x1+x2)/2;
-  let yl=top+gap*(items.length-1)/2,yr=top,o='';
-  o+=`<text x="${x0-30}" y="${(top+bottom)/2-14}" text-anchor="end" font-size="26" fill="${C.mute}" letter-spacing="2">说了 429</text>`;
-  o+=`<text x="${x0-30}" y="${(top+bottom)/2+50}" text-anchor="end" font-size="72" font-weight="600" fill="${C.text}">330</text>`;
-  items.forEach(it=>{
-    const h=it.v/D.pool*avail,a0=yl,a1=yl+h,b0=yr,b1=yr+h;
-    o+=`<path d="M${x1},${a0} C${xm},${a0} ${xm},${b0} ${x2},${b0} L${x2},${b1} C${xm},${b1} ${xm},${a1} ${x1},${a1} Z" fill="${it.c}" opacity=".26"/>`;
-    o+=`<rect x="${x0}" y="${a0}" width="${x1-x0}" height="${h}" fill="${it.c}"/>`;
-    o+=`<rect x="${x2}" y="${b0}" width="${x3-x2}" height="${h}" fill="${it.c}"/>`;
-    const cy=(b0+b1)/2;
-    o+=`<text x="${x3+30}" y="${cy-4}" font-size="56" font-weight="600" fill="${it.c}">${it.v}<tspan font-size="26" font-weight="400" fill="${C.mute}" dx="14">${pct(it.v,D.pool)}</tspan></text>`;
-    o+=`<text x="${x3+30}" y="${cy+40}" font-size="26" fill="${C.text}">${it.l}</text>`;
-    yl=a1;yr=b1+gap;});
-  s.innerHTML=o;
-}
+function cgrid(){let h='';for(let k=0;k<D.closedOf;k++)h+=`<i class="cell ${k<D.closed?'green':''}"></i>`;$('#cgrid').innerHTML=h;}
 
 const slides=[...document.querySelectorAll('.slide')];let i=0;
 function show(n){
@@ -438,7 +442,7 @@ addEventListener('keydown',e=>{
   else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
 });
 $('#stage').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();show(e.clientX>r.left+r.width/2?i+1:i-1);});
-waffle();thirds();daily();sankey();
+cgrid();
 show(Math.max(0,(parseInt(location.hash.slice(1))||1)-1));
   </script>
 </body>
