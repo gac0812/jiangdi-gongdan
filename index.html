@@ -214,8 +214,6 @@ svg.chart{width:100%;height:100%;display:block}
 .cfg-h{font-size:28px;color:var(--mute);padding-bottom:20px;border-bottom:2px solid var(--line2)}
 .cfg-v{margin-top:24px;font-size:46px;font-weight:600;line-height:1.6}
 .stack.thin{height:72px}
-.plain.gap td{vertical-align:top;line-height:1.5}
-.plain.gap td.n{width:200px}
 .cfg.plan{max-width:none;gap:96px}
 .cfg-p{margin-top:24px;font-size:34px;line-height:1.55;color:var(--text)}
 .close-why{margin-top:32px;max-width:1400px;font-size:32px;color:var(--mute);line-height:1.55}
@@ -373,19 +371,7 @@ svg.chart{width:100%;height:100%;display:block}
   </div>
 </section>
 
-<!-- 08 gaps -->
-<section class="slide" data-sec="不足">
-  <h2 class="a">现有不足</h2>
-  <div class="grow">
-    <table class="plain rules gap a">
-      <tr><td class="n">现状</td><td>默认只查最近 1 天的日志。</td></tr>
-      <tr><td class="n">原因</td><td>为了缩短查询时间。正常情况下，用户遇到问题会当时就问，或者先不管、下次遇到再问，1 天的范围能覆盖大部分情况。</td></tr>
-      <tr><td class="n">影响</td><td>用户隔了一天以上再来问，仍然需要用户提供 request id。</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- 09 next -->
+<!-- 08 next -->
 <section class="slide" data-sec="后续">
   <h2 class="a">后续计划：固定回答改为可配置</h2>
   <div class="grow">
