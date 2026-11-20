@@ -249,7 +249,7 @@ svg.chart{width:100%;height:100%;display:block}
 .bigside .num{font-size:220px}
 .bigside .lab{font-size:34px;color:var(--text);font-weight:600}
 .bigside .sm{font-size:26px}
-/* stack 221 */
+/* stack 363 */
 .brace{display:flex;gap:6px;margin-bottom:18px}
 .brace>div{border-top:3px solid;padding-top:14px;font-size:28px;font-weight:600;font-variant-numeric:tabular-nums}
 .stack-legend.l3{grid-template-columns:27.6fr 66.1fr 30fr;gap:40px}
@@ -282,7 +282,7 @@ svg.chart{width:100%;height:100%;display:block}
 <!-- 01 cover -->
 <section class="slide" data-sec="">
   <div class="grow">
-    <div class="k a">2026.11.03 – 11.11</div>
+    <div class="k a">2026.11.03 – 11.20</div>
     <h1 class="a">降低工单总量<br>降低转人工率</h1>
     <div class="cv-sub a">上线后数据汇报</div>
   </div>
@@ -290,15 +290,15 @@ svg.chart{width:100%;height:100%;display:block}
 
 <!-- 02 overview -->
 <section class="slide" data-sec="数据">
-  <h2 class="a">11.03 – 11.11 上线数据</h2>
+  <h2 class="a">11.03 – 11.20 上线数据</h2>
   <div class="grow">
     <div class="stats a">
-      <div class="st"><div class="num c-green">61</div><div class="st-k">自动提额</div></div>
-      <div class="st"><div class="num c-blue">146</div><div class="st-k">固定回答</div></div>
-      <div class="st"><div class="num c-amber">14</div><div class="st-k">转商务</div></div>
-      <div class="st"><div class="num c-green">57.1%</div><div class="st-k">独立闭环率<span>相关工单 24 / 42</span><span>原来不到 10%</span></div></div>
+      <div class="st"><div class="num c-green">118</div><div class="st-k">自动提额</div></div>
+      <div class="st"><div class="num c-blue">219</div><div class="st-k">固定回答</div></div>
+      <div class="st"><div class="num c-amber">26</div><div class="st-k">转商务</div></div>
+      <div class="st"><div class="num c-green">48.4%</div><div class="st-k">独立闭环率<span>相关工单 30 / 62</span><span>原来不到 10%</span></div></div>
     </div>
-    <div class="ai-note a"><div class="ln"></div><div>自动提额 + 固定回答共 <b>207</b>，由 AI 直接处理，没有转人工</div></div>
+    <div class="ai-note a"><div class="ln"></div><div>自动提额 + 固定回答共 <b>337</b>，由 AI 直接处理，没有转人工</div></div>
   </div>
 </section>
 
@@ -307,30 +307,30 @@ svg.chart{width:100%;height:100%;display:block}
   <h2 class="a">429 问题的三种处理结果</h2>
   <div class="grow">
     <div class="stack thin a">
-      <div class="seg green" style="width:27.6%"></div>
-      <div class="seg blue" style="width:66.1%;background:var(--blue)"></div>
-      <div class="seg amber" style="width:6.3%"></div>
+      <div class="seg green" style="width:32.5%"></div>
+      <div class="seg blue" style="width:60.3%;background:var(--blue)"></div>
+      <div class="seg amber" style="width:7.2%"></div>
     </div>
     <table class="plain a">
-      <tr><td class="n"><i class="sw green"></i>自动提额</td><td>模糊 429，在 AI 可提范围内，直接提额</td><td class="v c-green">61</td></tr>
-      <tr><td class="n"><i class="sw blue"></i>固定回答</td><td>免费模型的 429，提额无效，直接说明原因</td><td class="v c-blue">146</td></tr>
-      <tr><td class="n"><i class="sw amber"></i>转商务</td><td>超出 AI 可提范围，生成提额商务任务</td><td class="v c-amber">14</td></tr>
-      <tr class="tot"><td class="n">合计</td><td></td><td class="v">221</td></tr>
+      <tr><td class="n"><i class="sw green"></i>自动提额</td><td>模糊 429，在 AI 可提范围内，直接提额</td><td class="v c-green">118</td></tr>
+      <tr><td class="n"><i class="sw blue"></i>固定回答</td><td>免费模型的 429，提额无效，直接说明原因</td><td class="v c-blue">219</td></tr>
+      <tr><td class="n"><i class="sw amber"></i>转商务</td><td>超出 AI 可提范围，生成提额商务任务</td><td class="v c-amber">26</td></tr>
+      <tr class="tot"><td class="n">合计</td><td></td><td class="v">363</td></tr>
     </table>
   </div>
 </section>
 
 <!-- 04 closure -->
 <section class="slide" data-sec="数据">
-  <h2 class="a">42 例相关工单中独立闭环 24 例</h2>
+  <h2 class="a">62 例相关工单中独立闭环 30 例</h2>
   <div class="grow">
     <div class="cgrid a" id="cgrid"></div>
     <div class="close-legend a">
-      <div class="lg"><i class="sw green"></i>独立闭环 <b>24</b></div>
-      <div class="lg"><i class="sw" style="background:var(--grey)"></i>其余 <b>18</b></div>
+      <div class="lg"><i class="sw green"></i>独立闭环 <b>30</b></div>
+      <div class="lg"><i class="sw" style="background:var(--grey)"></i>其余 <b>32</b></div>
     </div>
-    <div class="cmp a"><span class="cmp-k">独立闭环率</span><span class="cmp-old">原来不到 10%</span><span class="cmp-ar">→</span><span class="cmp-new">现在 57.1%</span></div>
-    <p class="close-why a">其余 18 例还没独立闭环，是因为用户问题、任务比较复杂。比如用户一次问了多个问题，或者连续问了几个问题，还是需要人来回答。</p>
+    <div class="cmp a"><span class="cmp-k">独立闭环率</span><span class="cmp-old">原来不到 10%</span><span class="cmp-ar">→</span><span class="cmp-new">现在 48.4%</span></div>
+    <p class="close-why a">其余 32 例还没独立闭环，是因为用户问题、任务比较复杂。比如用户一次问了多个问题，或者连续问了几个问题，还是需要人来回答。</p>
   </div>
 </section>
 
@@ -387,12 +387,12 @@ svg.chart{width:100%;height:100%;display:block}
   <h2 class="a">小结</h2>
   <div class="grow">
     <table class="sum a">
-      <tr><th>项目</th><th>说明</th><th style="text-align:right">11.03 – 11.11</th></tr>
-      <tr><td class="w">自动提额</td><td class="h">模糊 429，AI 直接提额</td><td class="r">61</td></tr>
-      <tr><td class="w">固定回答</td><td class="h">免费模型 429，AI 说明原因</td><td class="r">146</td></tr>
-      <tr><td class="w">AI 直接处理合计</td><td class="h">自动提额 + 固定回答</td><td class="r">207</td></tr>
-      <tr><td class="w">转商务</td><td class="h">超出 AI 可提范围</td><td class="r">14</td></tr>
-      <tr><td class="w">独立闭环率</td><td class="h">相关工单 24 / 42，原来不到 10%</td><td class="r">57.1%</td></tr>
+      <tr><th>项目</th><th>说明</th><th style="text-align:right">11.03 – 11.20</th></tr>
+      <tr><td class="w">自动提额</td><td class="h">模糊 429，AI 直接提额</td><td class="r">118</td></tr>
+      <tr><td class="w">固定回答</td><td class="h">免费模型 429，AI 说明原因</td><td class="r">219</td></tr>
+      <tr><td class="w">AI 直接处理合计</td><td class="h">自动提额 + 固定回答</td><td class="r">337</td></tr>
+      <tr><td class="w">转商务</td><td class="h">超出 AI 可提范围</td><td class="r">26</td></tr>
+      <tr><td class="w">独立闭环率</td><td class="h">相关工单 30 / 62，原来不到 10%</td><td class="r">48.4%</td></tr>
     </table>
   </div>
 </section>
@@ -401,8 +401,8 @@ svg.chart{width:100%;height:100%;display:block}
 </div>
 
 <script>
-const D={// 2026-11-03 至 2026-11-11 合计
-  raised:61,freeFixed:146,biz:14,closed:24,closedOf:42};
+const D={// 2026-11-03 至 2026-11-20 合计
+  raised:118,freeFixed:219,biz:26,closed:30,closedOf:62};
 const C={amber:'#d4890a',blue:'#2b7de9',green:'#1a9f5c',red:'#e24d48',grey:'#9aa3b2',mute:'#5c6573',dim:'#8b95a5',text:'#111318',axis:'rgba(17,19,24,.12)',track:'rgba(17,19,24,.06)'};
 const $=s=>document.querySelector(s);
 
