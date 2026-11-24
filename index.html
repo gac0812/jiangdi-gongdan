@@ -185,6 +185,7 @@ svg.chart{width:100%;height:100%;display:block}
 /* v3 */
 .cv-sub{margin-top:44px;font-size:40px;color:var(--mute)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr)}
+.stats.s3{grid-template-columns:repeat(3,1fr)}
 .st{padding:8px 0 8px 48px;border-left:2px solid var(--line)}
 .st:first-child{padding-left:0;border-left:0}
 .st .num{font-size:140px}
@@ -268,7 +269,9 @@ svg.chart{width:100%;height:100%;display:block}
 .sum td{font-size:30px;padding:24px 0;border-top:1px solid var(--line);vertical-align:middle}
 .sum td.w{font-weight:600;width:460px}
 .sum td.h{color:var(--mute);width:620px}
-.sum td.r{text-align:right;font-size:44px;color:var(--text);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sum td.r,.sum td.b{text-align:right;font-size:44px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sum td.r{color:var(--text)}
+.sum td.b{color:var(--mute)}
 .sum td.r small{font-size:24px;color:var(--mute);font-weight:400;margin-left:10px}
 .sum tr.tot td{border-top:2px solid var(--line2)}
 .levers .k{align-self:center;margin-right:8px}
@@ -282,55 +285,46 @@ svg.chart{width:100%;height:100%;display:block}
 <!-- 01 cover -->
 <section class="slide" data-sec="">
   <div class="grow">
-    <div class="k a">2026.11.03 – 11.20</div>
+    <div class="k a">修改后 2026.10.31 – 11.23</div>
     <h1 class="a">降低工单总量<br>降低转人工率</h1>
-    <div class="cv-sub a">上线后数据汇报</div>
+    <div class="cv-sub a">上线后数据汇报 · 对照 10.07 – 10.30</div>
   </div>
 </section>
 
-<!-- 02 overview -->
+<!-- 02 after -->
 <section class="slide" data-sec="数据">
-  <h2 class="a">11.03 – 11.20 上线数据</h2>
+  <h2 class="a">修改后 10.31 – 11.23</h2>
   <div class="grow">
-    <div class="stats a">
-      <div class="st"><div class="num c-green">118</div><div class="st-k">自动提额</div></div>
-      <div class="st"><div class="num c-blue">219</div><div class="st-k">固定回答</div></div>
-      <div class="st"><div class="num c-amber">26</div><div class="st-k">转商务</div></div>
-      <div class="st"><div class="num c-green">48.4%</div><div class="st-k">独立闭环率<span>相关工单 30 / 62</span><span>原来不到 10%</span></div></div>
+    <div class="stats s3 a">
+      <div class="st"><div class="num c-green">164</div><div class="st-k">模糊 429 实际自动提额</div></div>
+      <div class="st"><div class="num c-blue">351</div><div class="st-k">免费模型固定回答</div></div>
+      <div class="st"><div class="num">515</div><div class="st-k">AI 前置拦截合计<span>164 + 351</span></div></div>
     </div>
-    <div class="ai-note a"><div class="ln"></div><div>自动提额 + 固定回答共 <b>337</b>，由 AI 直接处理，没有转人工</div></div>
   </div>
 </section>
 
-<!-- 03 split -->
+<!-- 03 baseline -->
 <section class="slide" data-sec="数据">
-  <h2 class="a">429 问题的三种处理结果</h2>
+  <h2 class="a">对照 10.07 – 10.30</h2>
   <div class="grow">
-    <div class="stack thin a">
-      <div class="seg green" style="width:32.5%"></div>
-      <div class="seg blue" style="width:60.3%;background:var(--blue)"></div>
-      <div class="seg amber" style="width:7.2%"></div>
+    <div class="stats s3 a">
+      <div class="st"><div class="num c-green">66</div><div class="st-k">模糊 429 实际自动提额</div></div>
+      <div class="st"><div class="num c-blue">1</div><div class="st-k">免费模型固定回答</div></div>
+      <div class="st"><div class="num">67</div><div class="st-k">AI 前置拦截合计<span>66 + 1</span></div></div>
     </div>
-    <table class="plain a">
-      <tr><td class="n"><i class="sw green"></i>自动提额</td><td>模糊 429，在 AI 可提范围内，直接提额</td><td class="v c-green">118</td></tr>
-      <tr><td class="n"><i class="sw blue"></i>固定回答</td><td>免费模型的 429，提额无效，直接说明原因</td><td class="v c-blue">219</td></tr>
-      <tr><td class="n"><i class="sw amber"></i>转商务</td><td>超出 AI 可提范围，生成提额商务任务</td><td class="v c-amber">26</td></tr>
-      <tr class="tot"><td class="n">合计</td><td></td><td class="v">363</td></tr>
-    </table>
   </div>
 </section>
 
-<!-- 04 closure -->
+<!-- 04 compare -->
 <section class="slide" data-sec="数据">
-  <h2 class="a">62 例相关工单中独立闭环 30 例</h2>
+  <h2 class="a">和对照期比</h2>
   <div class="grow">
-    <div class="cgrid a" id="cgrid"></div>
-    <div class="close-legend a">
-      <div class="lg"><i class="sw green"></i>独立闭环 <b>30</b></div>
-      <div class="lg"><i class="sw" style="background:var(--grey)"></i>其余 <b>32</b></div>
+    <div class="grid3 hl3 a">
+      <div class="card"><div class="num c-green">7.7×</div><div class="lab">拦截</div><div class="sm">515 vs 67，多拦 448 次</div></div>
+      <div class="card"><div class="num c-green">2.5×</div><div class="lab">自动提额</div><div class="sm">164 vs 66</div></div>
+      <div class="card"><div class="num c-blue">351</div><div class="lab">固定回答</div><div class="sm">对照期 1</div></div>
     </div>
-    <div class="cmp a"><span class="cmp-k">独立闭环率</span><span class="cmp-old">原来不到 10%</span><span class="cmp-ar">→</span><span class="cmp-new">现在 48.4%</span></div>
-    <p class="close-why a">其余 32 例还没独立闭环，是因为用户问题、任务比较复杂。比如用户一次问了多个问题，或者连续问了几个问题，还是需要人来回答。</p>
+    <p class="close-why a">修改后 10.31 – 11.23，对照 10.07 – 10.30。拦截约 7.7 倍，自动提额约 2.5 倍。</p>
   </div>
 </section>
 
@@ -387,12 +381,10 @@ svg.chart{width:100%;height:100%;display:block}
   <h2 class="a">小结</h2>
   <div class="grow">
     <table class="sum a">
-      <tr><th>项目</th><th>说明</th><th style="text-align:right">11.03 – 11.20</th></tr>
-      <tr><td class="w">自动提额</td><td class="h">模糊 429，AI 直接提额</td><td class="r">118</td></tr>
-      <tr><td class="w">固定回答</td><td class="h">免费模型 429，AI 说明原因</td><td class="r">219</td></tr>
-      <tr><td class="w">AI 直接处理合计</td><td class="h">自动提额 + 固定回答</td><td class="r">337</td></tr>
-      <tr><td class="w">转商务</td><td class="h">超出 AI 可提范围</td><td class="r">26</td></tr>
-      <tr><td class="w">独立闭环率</td><td class="h">相关工单 30 / 62，原来不到 10%</td><td class="r">48.4%</td></tr>
+      <tr><th>项目</th><th style="text-align:right">对照 10.07 – 10.30</th><th style="text-align:right">修改后 10.31 – 11.23</th></tr>
+      <tr><td class="w">模糊 429 实际自动提额</td><td class="b">66</td><td class="r">164<small>约 2.5 倍</small></td></tr>
+      <tr><td class="w">免费模型固定回答</td><td class="b">1</td><td class="r">351</td></tr>
+      <tr class="tot"><td class="w">AI 前置拦截合计</td><td class="b">67</td><td class="r">515<small>多拦 448 · 约 7.7 倍</small></td></tr>
     </table>
   </div>
 </section>
@@ -401,12 +393,8 @@ svg.chart{width:100%;height:100%;display:block}
 </div>
 
 <script>
-const D={// 2026-11-03 至 2026-11-20 合计
-  raised:118,freeFixed:219,biz:26,closed:30,closedOf:62};
 const C={amber:'#d4890a',blue:'#2b7de9',green:'#1a9f5c',red:'#e24d48',grey:'#9aa3b2',mute:'#5c6573',dim:'#8b95a5',text:'#111318',axis:'rgba(17,19,24,.12)',track:'rgba(17,19,24,.06)'};
 const $=s=>document.querySelector(s);
-
-function cgrid(){let h='';for(let k=0;k<D.closedOf;k++)h+=`<i class="cell ${k<D.closed?'green':''}"></i>`;$('#cgrid').innerHTML=h;}
 
 const slides=[...document.querySelectorAll('.slide')];let i=0;
 function show(n){
@@ -428,7 +416,6 @@ addEventListener('keydown',e=>{
   else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
 });
 $('#stage').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();show(e.clientX>r.left+r.width/2?i+1:i-1);});
-cgrid();
 show(Math.max(0,(parseInt(location.hash.slice(1))||1)-1));
   </script>
 </body>
