@@ -287,6 +287,10 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
 .chain.tight .ch{padding:14px 28px}
 .chain.tight .ch .t{font-size:32px}
 .chain.tight .ch .d{font-size:24px;margin-top:4px}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;min-height:0}
+.shots figure{margin:0;min-width:0}
+.shots img{display:block;width:100%;height:620px;object-fit:contain;object-position:top center;background:#1b1e27;border-radius:12px;border:1px solid var(--line)}
+.shots figcaption{margin-top:14px;font-size:24px;color:var(--mute);line-height:1.35}
 
 </style>
 </head>
@@ -397,8 +401,48 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
   </div>
 </section>
 
-<!-- 08 evolution -->
-<section class="slide" data-sec="做法">
+<!-- 08 429 after -->
+<section class="slide" data-sec="429 相关优化">
+  <div class="k a">429 相关优化 · 修改后 10.31 – 11.23</div>
+  <h2 class="a">修改后 10.31 – 11.23</h2>
+  <div class="grow">
+    <div class="stats s3 a">
+      <div class="st"><div class="num c-green">164</div><div class="st-k">模糊 429 实际自动提额</div></div>
+      <div class="st"><div class="num c-blue">351</div><div class="st-k">免费模型固定回答</div></div>
+      <div class="st"><div class="num">515</div><div class="st-k">AI 前置拦截合计<span>164 + 351</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 429 baseline -->
+<section class="slide" data-sec="429 相关优化">
+  <div class="k a">429 相关优化</div>
+  <h2 class="a">对照 10.07 – 10.30</h2>
+  <div class="grow">
+    <div class="stats s2 a">
+      <div class="st"><div class="num c-green">66</div><div class="st-k">模糊 429 实际自动提额</div></div>
+      <div class="st"><div class="num">67</div><div class="st-k">AI 前置拦截合计</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 429 compare -->
+<section class="slide" data-sec="429 相关优化">
+  <div class="k a">429 相关优化</div>
+  <h2 class="a">和对照期比</h2>
+  <div class="grow">
+    <div class="grid3 hl3 a">
+      <div class="card"><div class="num c-green">7.7×</div><div class="lab">拦截</div><div class="sm">515 vs 67，多拦 448 次</div></div>
+      <div class="card"><div class="num c-green">2.5×</div><div class="lab">自动提额</div><div class="sm">164 vs 66</div></div>
+      <div class="card"><div class="num c-blue">351</div><div class="lab">固定回答</div></div>
+    </div>
+    <p class="close-why a">修改后 10.31 – 11.23，对照 10.07 – 10.30。拦截约 7.7 倍，自动提额约 2.5 倍。</p>
+  </div>
+</section>
+
+<!-- 11 config evolution -->
+<section class="slide" data-sec="配置工具优化">
+  <div class="k a">配置工具优化</div>
   <h2 class="a">配置工具怎么走到重构</h2>
   <div class="grow">
     <div class="chain tight a">
@@ -410,26 +454,26 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
 </section>
 
 <!-- 09 old helper -->
-<section class="slide" data-sec="做法">
-  <div class="k a">更新前 · v0.5.0</div>
+<section class="slide" data-sec="配置工具优化">
+  <div class="k a">配置工具优化 · 更新前 v0.5.0</div>
   <h2 class="a">指引不清楚，模型不能选</h2>
   <div class="grow">
-    <div class="cfg plan a">
-      <div>
-        <div class="cfg-h">主菜单里没有模型</div>
-        <div class="cfg-p">只有语言、线路、API Key、编码工具。想换模型，还是要用户自己去客户端里改。</div>
-      </div>
-      <div>
-        <div class="cfg-h">Codex 直接写死</div>
-        <div class="cfg-p">通过七牛代理固定使用 <code>openai/gpt-6-astra</code>，界面写着「无需选择」。按回车就写进去。</div>
-      </div>
+    <div class="shots a">
+      <figure>
+        <img src="img/helper-v050-menu.png" alt="v0.5.0 主菜单只有语言、线路、API Key 和编码工具，没有模型">
+        <figcaption>主菜单没有模型。想换，还得自己去客户端改。</figcaption>
+      </figure>
+      <figure>
+        <img src="img/helper-v050-fixed.png" alt="v0.5.0 Codex 固定写入 openai/gpt-6-astra，无需选择">
+        <figcaption>Codex 写死 openai/gpt-6-astra，界面写着无需选择。</figcaption>
+      </figure>
     </div>
-    <p class="close-why a">所以当时引导用户去用 CC Switch。这个引导真实发生过。</p>
   </div>
 </section>
 
 <!-- 10 incident -->
-<section class="slide" data-sec="做法">
+<section class="slide" data-sec="配置工具优化">
+  <div class="k a">配置工具优化</div>
   <h2 class="a">新手按教程配，配到的不是他要的模型</h2>
   <div class="grow">
     <ol class="why a">
@@ -442,51 +486,20 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
 </section>
 
 <!-- 11 new helper -->
-<section class="slide" data-sec="做法">
-  <div class="k a">重构后 · v0.6.0</div>
+<section class="slide" data-sec="配置工具优化">
+  <div class="k a">配置工具优化 · 重构后 v0.6.0</div>
   <h2 class="a">配置必须经过模型这一步</h2>
   <div class="grow">
-    <div class="grid3 a">
-      <div class="card"><div class="stmt">先选模型</div><div class="lab">工具、模型、确认，过不了这一步写不进去</div></div>
-      <div class="card"><div class="stmt">可以分开设</div><div class="lab">Claude Code 的主模型、兜底、子代理，不必跟死一个</div></div>
-      <div class="card"><div class="stmt">列表里能搜</div><div class="lab">标出上下文和免费模型，不再写死 gpt-6-astra</div></div>
+    <div class="shots a">
+      <figure>
+        <img src="img/helper-v060-slots.png" alt="v0.6.0 Claude Code 可分别设置主模型、兜底和子代理">
+        <figcaption>主模型、兜底、子代理可以分开设，不必跟死一个。</figcaption>
+      </figure>
+      <figure>
+        <img src="img/helper-v060-picker.png" alt="v0.6.0 可搜索模型列表，标出上下文和免费模型">
+        <figcaption>列表能搜，标出上下文和免费模型，不再写死。</figcaption>
+      </figure>
     </div>
-  </div>
-</section>
-
-<!-- 12 after -->
-<section class="slide" data-sec="效果">
-  <h2 class="a">修改后 10.31 – 11.23</h2>
-  <div class="grow">
-    <div class="stats s3 a">
-      <div class="st"><div class="num c-green">164</div><div class="st-k">模糊 429 实际自动提额</div></div>
-      <div class="st"><div class="num c-blue">351</div><div class="st-k">免费模型固定回答</div></div>
-      <div class="st"><div class="num">515</div><div class="st-k">AI 前置拦截合计<span>164 + 351</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 baseline -->
-<section class="slide" data-sec="效果">
-  <h2 class="a">对照 10.07 – 10.30</h2>
-  <div class="grow">
-    <div class="stats s2 a">
-      <div class="st"><div class="num c-green">66</div><div class="st-k">模糊 429 实际自动提额</div></div>
-      <div class="st"><div class="num">67</div><div class="st-k">AI 前置拦截合计</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 04 compare -->
-<section class="slide" data-sec="效果">
-  <h2 class="a">和对照期比</h2>
-  <div class="grow">
-    <div class="grid3 hl3 a">
-      <div class="card"><div class="num c-green">7.7×</div><div class="lab">拦截</div><div class="sm">515 vs 67，多拦 448 次</div></div>
-      <div class="card"><div class="num c-green">2.5×</div><div class="lab">自动提额</div><div class="sm">164 vs 66</div></div>
-      <div class="card"><div class="num c-blue">351</div><div class="lab">固定回答</div></div>
-    </div>
-    <p class="close-why a">修改后 10.31 – 11.23，对照 10.07 – 10.30。拦截约 7.7 倍，自动提额约 2.5 倍。</p>
   </div>
 </section>
 
