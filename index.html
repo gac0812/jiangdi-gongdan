@@ -548,6 +548,79 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
   </div>
 </section>
 
+<!-- 17 mars home -->
+<section class="slide" data-sec="其他优化">
+  <div class="k a">其他优化 · Mars · #3473</div>
+  <h2 class="a">技术支持首页改版</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div>
+        <div class="cfg-h">首页</div>
+        <div class="cfg-p">重做右下圆弧、眉标、输入提示和常见问题卡片。横幅仍用管理端配置的地址，页面不写死。</div>
+        <div class="cfg-p">深色模式在文件名后加 <code>-dark</code> 要配套图。加载失败就退回浅色图。</div>
+      </div>
+      <div>
+        <div class="cfg-h">发送按钮</div>
+        <div class="cfg-p">和 TS 的回复里，过长的一行会把底栏撑出卡片，右对齐的「发送」被裁掉。</div>
+        <div class="cfg-p">现在长内容在输入框内换行。窗口窄时按钮换行，发送仍留在卡片里。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 mars quota -->
+<section class="slide" data-sec="其他优化">
+  <div class="k a">其他优化 · Mars · Weiki · #3467</div>
+  <h2 class="a">建单和投诉限额下到后端</h2>
+  <div class="grow">
+    <ol class="why a">
+      <li>普通建单、Bearer 建单、AI 会话转人工，都走后端校验。伪造 UID 或群参数绕不过去。</li>
+      <li>个人工单按 UID 滚动 60 秒，默认最多 3 单，后台可改。白名单不限。群工单不占这个额度。</li>
+      <li>超限返回 429，不落单。同一工单按北京时间每天最多投诉一次，重复投诉返回 409。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 19 mars observe -->
+<section class="slide" data-sec="其他优化">
+  <div class="k a">其他优化 · Mars · Weiki · #3438 · #3450 · #3457</div>
+  <h2 class="a">工单观测可以点进具体单</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div>
+        <div class="cfg-h">看什么</div>
+        <div class="cfg-p">按原因标签看数量和 AI 闭环率，按自然周画柱图。标签下拉可以搜索。</div>
+        <div class="cfg-p">AI 独立闭环只表示工单已结束、且没有实质的公开人工回复。不等于问题已经解决。</div>
+      </div>
+      <div>
+        <div class="cfg-h">怎么追查</div>
+        <div class="cfg-p">点每周柱图，或点问题分类，打开这一类的工单明细。接口是 <code>GET /api/observability/tags/:tag/tickets</code>。</div>
+        <div class="cfg-p">按周用 <code>week</code>，按分类用 <code>question_title</code>。两种条件不能同时传。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 mars task qq -->
+<section class="slide" data-sec="其他优化">
+  <div class="k a">其他优化 · Mars · Weiki · #3474 · #3472</div>
+  <h2 class="a">任务可以改 UID，群按最新消息排</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div>
+        <div class="cfg-h">任务详情</div>
+        <div class="cfg-p">新版任务页右侧可以改客户 UID，复用现有任务更新接口。数字 UID 直接查库，不依赖搜索。</div>
+        <div class="cfg-p">保存成功后只更新这一块客户信息，不重载整页，也不冲掉还没保存的草稿。</div>
+      </div>
+      <div>
+        <div class="cfg-h">QQ 群组</div>
+        <div class="cfg-p">进入工作台的群组页时，按每群最后一条消息的时间倒序，带时间和最多 240 字摘要。</div>
+        <div class="cfg-p">没有消息的群放在最后。停留在页面上不自动刷新，离开再进才重新加载。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="chrome"><div class="prog"><i id="bar"></i></div><span id="pg"></span></div>
 </div>
 
