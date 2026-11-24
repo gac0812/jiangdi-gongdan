@@ -278,6 +278,16 @@ svg.chart{width:100%;height:100%;display:block}
 .levers .k{align-self:center;margin-right:8px}
 .levers{margin-top:44px}
 .lever.mute{color:var(--mute);border-color:var(--line2)}
+code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em;font-weight:600}
+.api{width:100%;border-collapse:collapse}
+.api th{font-size:22px;color:var(--mute);font-weight:400;letter-spacing:.12em;text-align:left;padding:0 20px 14px 0}
+.api td{font-size:26px;padding:16px 20px 16px 0;border-top:1px solid var(--line);vertical-align:middle}
+.api td.n{color:var(--text);font-weight:600}
+.api td.m{color:var(--mute)}
+.chain.tight .ch{padding:14px 28px}
+.chain.tight .ch .t{font-size:32px}
+.chain.tight .ch .d{font-size:24px;margin-top:4px}
+
 </style>
 </head>
 <body>
@@ -286,14 +296,124 @@ svg.chart{width:100%;height:100%;display:block}
 <!-- 01 cover -->
 <section class="slide" data-sec="">
   <div class="grow">
-    <div class="k a">修改后 2026.10.31 – 11.23</div>
+    <div class="k a">起因 2026.08.14 – 09.15 · 效果 10.31 – 11.23</div>
     <h1 class="a">降低工单总量<br>降低转人工率</h1>
-    <div class="cv-sub a">上线后数据汇报 · 对照 10.07 – 10.30</div>
+    <div class="cv-sub a">为什么做 · 做了什么 · 现在的效果</div>
   </div>
 </section>
 
-<!-- 02 after -->
-<section class="slide" data-sec="数据">
+<!-- 02 why -->
+<section class="slide" data-sec="为什么">
+  <div class="k a">2026.08.14 – 09.15 · MARS 1774</div>
+  <h2 class="a">AI 工单集中在两类，而且不进 TS</h2>
+  <div class="grow">
+    <div class="grid3 hl3 a">
+      <div class="card"><div class="num c-amber">126</div><div class="lab">429 / 限流</div><div class="sm">7.1% · 随推广上升</div></div>
+      <div class="card"><div class="num c-blue">61</div><div class="lab">配置</div><div class="sm">3.4% · 每单都要查</div></div>
+      <div class="card"><div class="num c-mute">1587</div><div class="lab">其他</div><div class="sm">89.5%</div></div>
+    </div>
+    <p class="close-why a">TPM 100 万以内应由 AI 直接做，以上只有商务。这两类不进 TS。配置工单耗时长，新手也不会配。</p>
+  </div>
+</section>
+
+<!-- 03 why half -->
+<section class="slide" data-sec="为什么">
+  <div class="k a">前置会话 · 说了 429 的 330 人</div>
+  <h2 class="a">自助提额只成了一半</h2>
+  <div class="grow">
+    <div class="stats a">
+      <div class="st"><div class="num c-green">164</div><div class="st-k">提额成功<span>未建单</span></div></div>
+      <div class="st"><div class="num c-red">66</div><div class="st-k">没提额<span>进了工单</span></div></div>
+      <div class="st"><div class="num c-amber">100</div><div class="st-k">没提额<span>也没建单</span></div></div>
+      <div class="st"><div class="num">50%</div><div class="st-k">失败率<span>预期收到 5%</span></div></div>
+    </div>
+    <p class="close-why a">没提上的人继续忍、流失，或者下次直接提工单，不再信 AI。当时转人工 29%，预期收到 9%。</p>
+  </div>
+</section>
+
+<!-- 04 chain -->
+<section class="slide" data-sec="做法">
+  <div class="k a">前置 /api/v3/chat · 工单内 /api/v2/chat</div>
+  <h2 class="a">429：先取证，再动限额</h2>
+  <div class="grow">
+    <div class="chain tight a">
+      <div class="ch"><div class="no">1</div><div><div class="t">找编号</div><div class="d"><code>extract_customer_request_ids</code> · <code>normalize_customer_request_id</code> 把 msg_ 换成 chatcmpl-</div></div></div>
+      <div class="ch"><div class="no">2</div><div><div class="t">没有完整编号</div><div class="d"><code>list_recent_failed_ai_requests</code> · 先 24 小时，没有 429 再查 7 天</div></div></div>
+      <div class="ch"><div class="no">3</div><div><div class="t">查这一条</div><div class="d"><code>query_ai_inference_request_log</code> · <code>classify_rate_limit_failures</code> 定性 RPM / TPM / TPD</div></div></div>
+      <div class="ch"><div class="no">4</div><div><div class="t">免费模型直接结束</div><div class="d"><code>is_conatus_free_429</code> · 模型必须是 qiniu/conatus-free，不提额，不建商务任务</div></div></div>
+      <div class="ch res"><div class="no">5</div><div><div class="t">确认是账号侧 429，且 uid 对上</div><div class="d"><code>increase_ai_inference_rate_limits</code> · 口述、笼统 429、并发，都不提</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 interfaces -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">函数对上的上游接口</h2>
+  <div class="grow">
+    <table class="api a">
+      <tr><th>函数</th><th>接口</th><th>做什么</th></tr>
+      <tr><td class="n"><code>list_recent_failed_ai_requests</code></td><td><code>GET /admin/v4/u/stat/log</code></td><td class="m">只拿一条 429 的编号</td></tr>
+      <tr><td class="n"><code>query_ai_inference_request_log</code></td><td><code>GET /inapi/sales/request-log</code></td><td class="m">确认 HTTP 429，记下证据</td></tr>
+      <tr><td class="n"><code>query_ai_inference_rate_limits</code></td><td><code>GET /inapi/sales/user/info</code></td><td class="m">读当前 RPM / TPM</td></tr>
+      <tr><td class="n"><code>increase_ai_inference_rate_limits</code></td><td><code>POST /inapi/sales/user/upsert</code></td><td class="m">写入后再 GET 核对</td></tr>
+      <tr><td class="n"><code>next_ticket_tpm</code></td><td><code>GET /seller/v1/query</code></td><td class="m">近 7 天用量不够就不提</td></tr>
+    </table>
+    <p class="close-why a">这些工具挂在技能 ai-inference 上。工单面自动上限是 RPM 100、TPM 100 万。没查到详情、不是 429、uid 不一致，工具直接拒绝，不改限额。</p>
+  </div>
+</section>
+
+<!-- 06 branch -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">两条不提额的出口</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div>
+        <div class="cfg-h">免费模型</div>
+        <div class="cfg-p"><code>is_conatus_free_429</code> 只认精确模型 <code>qiniu/conatus-free</code> 且 HTTP 429。</div>
+        <div class="cfg-p">命中后原样输出 <code>CONATUS_FREE_429_MESSAGE</code>。不调用 <code>increase_ai_inference_rate_limits</code>，也不调用 <code>submit_business_task</code>。后面再问“那怎么办”，仍走这句。</div>
+      </div>
+      <div>
+        <div class="cfg-h">到了自动上限</div>
+        <div class="cfg-p"><code>query_ai_inference_rate_limits</code> 带回 <code>at_automatic_cap</code>。这一轮只告知：扫码，或由我联系商务。不建单。</div>
+        <div class="cfg-p">用户接受之后，才 <code>submit_business_task</code>，类型 <code>quota_increase</code>。创建任务不等于已经提额。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 prs -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">落在 qdesk 的这些改动</h2>
+  <div class="grow">
+    <table class="api a">
+      <tr><th>PR</th><th>落了什么</th></tr>
+      <tr><td class="n">#18</td><td class="m"><code>query_ai_inference_request_log</code></td></tr>
+      <tr><td class="n">#102</td><td class="m"><code>query_ai_inference_rate_limits</code></td></tr>
+      <tr><td class="n">#107 · #128</td><td class="m"><code>increase_ai_inference_rate_limits</code>，确认是账号侧 429 才提</td></tr>
+      <tr><td class="n">#316</td><td class="m">工单这轮带了截图，详情已查出完整编号，就按客户贴出的编号处理</td></tr>
+      <tr><td class="n">#321</td><td class="m">24 小时没有 429，<code>list_recent_failed_ai_requests</code> 再查 7 天</td></tr>
+      <tr><td class="n">#305 · #306</td><td class="m">工单面可以 <code>submit_business_task</code>，到顶之后才用</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 08 config -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">配置：只填一个 Key</h2>
+  <div class="grow">
+    <div class="flow a">
+      <div class="fbox">API Key</div>
+      <div class="farrow">→</div>
+      <div class="fbox acc blue">一键写入<div class="fsub">Base URL · 模型 ID · 鉴权头</div></div>
+      <div class="farrow">→</div>
+      <div class="ftools"><span>Codex</span><span>Claude Code</span><span>Workbuddy</span><span>Trae</span></div>
+    </div>
+    <p class="close-why a">这条走重构后的 qiniu-coding-helper，不再依赖别的软件。原来没有选模型的入口，默认模型写死成 gpt-6-astra。</p>
+  </div>
+</section>
+
+<!-- 09 after -->
+<section class="slide" data-sec="效果">
   <h2 class="a">修改后 10.31 – 11.23</h2>
   <div class="grow">
     <div class="stats s3 a">
@@ -305,7 +425,7 @@ svg.chart{width:100%;height:100%;display:block}
 </section>
 
 <!-- 03 baseline -->
-<section class="slide" data-sec="数据">
+<section class="slide" data-sec="效果">
   <h2 class="a">对照 10.07 – 10.30</h2>
   <div class="grow">
     <div class="stats s2 a">
@@ -316,7 +436,7 @@ svg.chart{width:100%;height:100%;display:block}
 </section>
 
 <!-- 04 compare -->
-<section class="slide" data-sec="数据">
+<section class="slide" data-sec="效果">
   <h2 class="a">和对照期比</h2>
   <div class="grow">
     <div class="grid3 hl3 a">
@@ -325,67 +445,6 @@ svg.chart{width:100%;height:100%;display:block}
       <div class="card"><div class="num c-blue">351</div><div class="lab">固定回答</div></div>
     </div>
     <p class="close-why a">修改后 10.31 – 11.23，对照 10.07 – 10.30。拦截约 7.7 倍，自动提额约 2.5 倍。</p>
-  </div>
-</section>
-
-<!-- 05 429 logic -->
-<section class="slide" data-sec="做法">
-  <h2 class="a">429 的处理逻辑</h2>
-  <div class="grow">
-    <p class="lead a">用户提到 429、限流、RPM / TPM、提额等，先识别为 429 问题，再按情况处理：</p>
-    <table class="plain rules a">
-      <tr><th>情况</th><th>处理</th></tr>
-      <tr><td class="n">模糊 429，在 AI 可提范围内</td><td>自动提额</td></tr>
-      <tr><td class="n">免费模型的 429</td><td>固定回答，说明原因</td></tr>
-      <tr><td class="n">超出 AI 可提范围</td><td>转商务，生成提额商务任务</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- 06 free model -->
-<section class="slide" data-sec="做法">
-  <h2 class="a">免费模型为什么用固定回答</h2>
-  <div class="grow">
-    <ol class="why a">
-      <li>免费模型报的也是 429，但它的限流是独立的。</li>
-      <li>提升 RPM / TPM 对它没有效果，商务那边也没办法提升。</li>
-      <li>所以由 AI 直接给固定回答说明情况，不再转人工，降低转人工率。</li>
-    </ol>
-  </div>
-</section>
-
-<!-- 07 config -->
-<section class="slide" data-sec="做法">
-  <h2 class="a">配置工具：重构 qiniu-coding-helper</h2>
-  <div class="grow">
-    <div class="cfg plan a">
-      <div><div class="cfg-h">为什么改这个</div><div class="cfg-p">qiniu-coding-helper 是已有的内部工具。重构它，就不用再依赖其他软件。</div></div>
-      <div><div class="cfg-h">原来的问题</div><div class="cfg-p">原来的配置流程比较乱，不是按合理的步骤来配。</div><div class="cfg-p">没有模型选择，默认模型是写死的。有用户用它配 Codex，写进去的默认模型是 gpt-6-astra。原来没有选模型的入口，就是直接写这个默认值。</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 08 next -->
-<section class="slide" data-sec="后续">
-  <h2 class="a">后续计划：固定回答改为可配置</h2>
-  <div class="grow">
-    <div class="cfg plan a">
-      <div><div class="cfg-h">做法</div><div class="cfg-p">从免费模型 429 的固定回答出发，把固定回答做成可配置项，直接在 Mars 里配置。</div><div class="cfg-p">之后遇到同类问题，加一条配置就能处理，不需要改代码。</div></div>
-      <div><div class="cfg-h">例子：403 工单</div><div class="cfg-p">最近 403 相关的工单又多了起来：账号因恶意刷流量包被封，用户提工单申诉。</div><div class="cfg-p">刚开始几天每天十几个，最近几天也是每天都有。</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 08 summary -->
-<section class="slide" data-sec="小结">
-  <h2 class="a">小结</h2>
-  <div class="grow">
-    <table class="sum a">
-      <tr><th>项目</th><th style="text-align:right">对照 10.07 – 10.30</th><th style="text-align:right">修改后 10.31 – 11.23</th></tr>
-      <tr><td class="w">模糊 429 实际自动提额</td><td class="b">66</td><td class="r">164<small>约 2.5 倍</small></td></tr>
-      <tr><td class="w">免费模型固定回答</td><td class="b">—</td><td class="r">351</td></tr>
-      <tr class="tot"><td class="w">AI 前置拦截合计</td><td class="b">67</td><td class="r">515<small>多拦 448 · 约 7.7 倍</small></td></tr>
-    </table>
   </div>
 </section>
 
