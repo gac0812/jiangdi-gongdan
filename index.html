@@ -397,22 +397,64 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
   </div>
 </section>
 
-<!-- 08 config -->
+<!-- 08 evolution -->
 <section class="slide" data-sec="做法">
-  <h2 class="a">配置：只填一个 Key</h2>
+  <h2 class="a">配置工具怎么走到重构</h2>
   <div class="grow">
-    <div class="flow a">
-      <div class="fbox">API Key</div>
-      <div class="farrow">→</div>
-      <div class="fbox acc blue">一键写入<div class="fsub">Base URL · 模型 ID · 鉴权头</div></div>
-      <div class="farrow">→</div>
-      <div class="ftools"><span>Codex</span><span>Claude Code</span><span>Workbuddy</span><span>Trae</span></div>
+    <div class="chain tight a">
+      <div class="ch"><div class="no">1</div><div><div class="t">在 CC Switch 上做七牛专属版</div><div class="d">最开始的想法。后面没有人维护。</div></div></div>
+      <div class="ch"><div class="no">2</div><div><div class="t">做一键导入到 CCS 的按钮</div><div class="d">还是挂在 CC Switch 上，依赖太重。</div></div></div>
+      <div class="ch res"><div class="no">3</div><div><div class="t">在原有 qiniu-coding-helper 上重构</div><div class="d">不另起一个没人管的项目，也不再把配置交给 CCS。</div></div></div>
     </div>
-    <p class="close-why a">这条走重构后的 qiniu-coding-helper，不再依赖别的软件。原来没有选模型的入口，默认模型写死成 gpt-6-astra。</p>
   </div>
 </section>
 
-<!-- 09 after -->
+<!-- 09 old helper -->
+<section class="slide" data-sec="做法">
+  <div class="k a">更新前 · v0.5.0</div>
+  <h2 class="a">指引不清楚，模型不能选</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div>
+        <div class="cfg-h">主菜单里没有模型</div>
+        <div class="cfg-p">只有语言、线路、API Key、编码工具。想换模型，还是要用户自己去客户端里改。</div>
+      </div>
+      <div>
+        <div class="cfg-h">Codex 直接写死</div>
+        <div class="cfg-p">通过七牛代理固定使用 <code>openai/gpt-6-astra</code>，界面写着「无需选择」。按回车就写进去。</div>
+      </div>
+    </div>
+    <p class="close-why a">所以当时引导用户去用 CC Switch。这个引导真实发生过。</p>
+  </div>
+</section>
+
+<!-- 10 incident -->
+<section class="slide" data-sec="做法">
+  <h2 class="a">新手按教程配，配到的不是他要的模型</h2>
+  <div class="grow">
+    <ol class="why a">
+      <li>用户想体验 DeepSeek，从官网点进教程，按步骤配完。</li>
+      <li>写进去的是 GPT。教程没有给选择，他以为自己在用 DeepSeek。</li>
+      <li>扣费和预期不符，才提工单。</li>
+      <li>我们按他的路径复现：不了解这块的人，确实会被带偏。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 11 new helper -->
+<section class="slide" data-sec="做法">
+  <div class="k a">重构后 · v0.6.0</div>
+  <h2 class="a">配置必须经过模型这一步</h2>
+  <div class="grow">
+    <div class="grid3 a">
+      <div class="card"><div class="stmt">先选模型</div><div class="lab">工具、模型、确认，过不了这一步写不进去</div></div>
+      <div class="card"><div class="stmt">可以分开设</div><div class="lab">Claude Code 的主模型、兜底、子代理，不必跟死一个</div></div>
+      <div class="card"><div class="stmt">列表里能搜</div><div class="lab">标出上下文和免费模型，不再写死 gpt-6-astra</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 after -->
 <section class="slide" data-sec="效果">
   <h2 class="a">修改后 10.31 – 11.23</h2>
   <div class="grow">
