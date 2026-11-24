@@ -515,6 +515,39 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
   </div>
 </section>
 
+<!-- 15 catalog -->
+<section class="slide" data-sec="其他优化">
+  <div class="k a">其他优化 · Weiki · #308</div>
+  <h2 class="a">模型目录改为实时读</h2>
+  <div class="grow">
+    <ol class="why a">
+      <li><code>list_available_models</code> 每次调用都读上游，不再用进程内缓存、磁盘快照或启动时的旧列表。</li>
+      <li>企业微信的报价目录也按这次查询实时读。</li>
+      <li>同一轮里再调一次，也不吃工具结果缓存，避免报出已经下线或改过约束的模型。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 16 import -->
+<section class="slide" data-sec="其他优化">
+  <div class="k a">其他优化 · Weiki · #319</div>
+  <h2 class="a">外部文档可以导入知识库</h2>
+  <div class="grow">
+    <div class="cfg plan a">
+      <div>
+        <div class="cfg-h">接口</div>
+        <div class="cfg-p"><code>POST /api/v1/knowledge-bases/{kb_id}/document-imports</code></div>
+        <div class="cfg-p">Bearer key，而且这个知识库要在白名单里。来源提交 Markdown，qdesk 负责校验、去重、分块、写入。</div>
+      </div>
+      <div>
+        <div class="cfg-h">怎么更新</div>
+        <div class="cfg-p">以来源平台、来源库、外部文档 ID 认同一篇。先写入并核对新版本，再删旧的。</div>
+        <div class="cfg-p">新版本写失败就留着旧内容。不改爬虫，也不接收外部传进来的向量。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="chrome"><div class="prog"><i id="bar"></i></div><span id="pg"></span></div>
 </div>
 
