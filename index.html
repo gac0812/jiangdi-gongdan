@@ -292,6 +292,10 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
 .shots img{display:block;width:100%;height:620px;object-fit:contain;object-position:top center;background:#1b1e27;border-radius:12px;border:1px solid var(--line)}
 .shots figcaption{margin-top:14px;font-size:24px;color:var(--mute);line-height:1.35}
 .dash{display:block;width:100%;height:auto;max-height:680px;object-fit:contain;object-position:left center;border-radius:12px;border:1px solid var(--line);background:#fff}
+.pair-dash{display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:0}
+.pair-dash figure{margin:0}
+.pair-dash img{display:block;width:100%;height:300px;object-fit:contain;object-position:left center;background:#fff;border-radius:12px;border:1px solid var(--line)}
+.pair-dash figcaption{margin-top:8px;font-size:22px;color:var(--mute)}
 .cmp3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
 .cmp3 .lab{font-size:28px;color:var(--text);font-weight:500;margin-top:0}
 .cmp3 .row{margin-top:36px;font-size:48px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.25}
@@ -472,21 +476,21 @@ code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.78em
   </div>
 </section>
 
-<!-- 11c before board -->
+<!-- 11c boards together -->
 <section class="slide" data-sec="429 相关优化">
-  <div class="k a">对照 · 2026.10.01 – 10.30</div>
-  <h2 class="a">改之前的看板</h2>
+  <div class="k a">10.01 – 10.30 对 10.31 – 11.25</div>
+  <h2 class="a">两张看板放一起</h2>
   <div class="grow">
-    <img class="a dash" src="img/ai-effect-1001-1030.png" alt="2026-10-01 至 10-30，AI 解决拦截占比 58.1%，转人工占比 37.4%，负反馈率 6.3%，有帮助率 25.9%">
-  </div>
-</section>
-
-<!-- 11d after board -->
-<section class="slide" data-sec="429 相关优化">
-  <div class="k a">修改后 · 2026.10.31 – 11.25</div>
-  <h2 class="a">改之后的看板</h2>
-  <div class="grow">
-    <img class="a dash" src="img/ai-effect-1031-1125.png" alt="2026-10-31 至 11-25，AI 解决拦截占比 66.0%，转人工占比 33.8%，负反馈率 0.2%，有帮助率 33.3%">
+    <div class="pair-dash a">
+      <figure>
+        <figcaption>对照 10.01 – 10.30 · 拦截 58.1% · 转人工 37.4% · 负反馈 6.3% / 有帮助 25.9%</figcaption>
+        <img src="img/ai-effect-1001-1030.png" alt="对照期看板：拦截占比 58.1%，转人工占比 37.4%，负反馈率 6.3%，有帮助率 25.9%">
+      </figure>
+      <figure>
+        <figcaption>修改后 10.31 – 11.25 · 拦截 66.0% · 转人工 33.8% · 负反馈 0.2% / 有帮助 33.3%</figcaption>
+        <img src="img/ai-effect-1031-1125.png" alt="修改后看板：拦截占比 66.0%，转人工占比 33.8%，负反馈率 0.2%，有帮助率 33.3%">
+      </figure>
+    </div>
   </div>
 </section>
 
